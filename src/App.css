@@ -4,8 +4,13 @@
   padding-left: 30pt;
   padding-right: 30pt;
   padding-bottom: 30pt;
+
 }
 
+.page{
+  @apply max-w-6xl mx-auto;
+  /* @apply border border-gray-400 */
+}
 .bg-dot {
   position: relative;
   z-index: 0;

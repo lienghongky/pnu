@@ -1,19 +1,42 @@
-import { useState,useEffect,useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
-
-function Diffcheck() {
-
-    const location = useLocation();
-    const [beforeImg, setBeforeImg] = useState('/assets/rain_input.png');
-    const [afterImg, setAfterImg] = useState('/assets/raint_output.png');
+function Diffcheck({ before, after,scaling,width,height,className }) {
+    const [beforeImg, setBeforeImg] = useState(before || '/assets/rain_input.png');
+    const [afterImg, setAfterImg] = useState(after || '/assets/raint_output.png');
 
     const [sliderPos, setSliderPos] = useState(50);
-    const [width, setWidth] = useState(400); // Default aspect ratio (1:1)
-    const [height, setHeight] = useState(400); // Default aspect ratio (1:1)
+    const [img_width, setWidth] = useState(0); // Default aspect ratio (1:1)
+    const [img_height, setHeight] = useState(0); // Default aspect ratio (1:1)
     const containerRef = useRef(null);
+    const [containerSize, setContainerSize] = useState({
+        width: 0,
+        height: 0,
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (containerRef.current) {
+                setContainerSize({
+                    width: containerRef.current.offsetWidth,
+                    height: containerRef.current.offsetHeight,
+                });
+            }
+        };
+
+        // Set initial size
+
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const handleSliderChange = (event) => {
-      setSliderPos(event.target.value);
+        setSliderPos(event.target.value);
     };
 
     useEffect(() => {
@@ -21,41 +44,43 @@ function Diffcheck() {
         const img = new Image();
         img.src = beforeImg; // Use the "before" image to calculate the aspect ratio
         img.onload = () => {
-          setWidth(img.width); 
-          setHeight(img.height); // Calculate aspect ratio (width / height)
+            setWidth(img.width);
+            setHeight(img.height); // Calculate aspect ratio (width / height)
+            setContainerSize({
+                width: img.height,
+                height: img.height,
+            });
         };
-      }, [beforeImg]);
+    }, [beforeImg]);
 
     useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
-        const before = searchParams.get('before'); // Extract 'before' parameter
-        const after = searchParams.get('after');   // Extract 'after' parameter
-    
         if (before) setBeforeImg(before);
         if (after) setAfterImg(after);
-      }, [location.search]);
+    }, [before, after]);
 
     return (
-
-        <div 
-        ref={containerRef}
-        className="relative w-4xl border-2 border-gray-200" style={{ width:`${width}px`, height:`${height}px` }}>
+        <div
+            ref={containerRef}
+            className={`overflow-hidden relative w-4xl border-2 border-gray-200 ${className}`}
+            style={{ width: `${width == 'auto' ? `${img_width}px` : width}`, height: `${height != 'auto' && height}`, aspectRatio: `${height=='auto' && img_width/img_height}` }}
+        >
             {/* Background Image */}
             <div
                 className="absolute top-0 left-0 w-full h-full"
                 style={{
                     backgroundImage: `url('${beforeImg}')`,
-                    backgroundSize: '600px 100%',
+                    backgroundSize: `${scaling ? scaling : img_width+'px '+img_height+'px'}`, //${scaling=='auto' ? width : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px`,
                 }}
             ></div>
 
             {/* Foreground Image */}
+            
             <div
                 id="foreground-img"
                 className="absolute top-0 left-0 h-full"
                 style={{
                     backgroundImage: `url('${afterImg}')`,
-                    backgroundSize: '600px 100%',
+                    backgroundSize: `${scaling ? scaling : img_width+'px '+img_height+'px'}`, //${scaling=='auto' ? width : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px
                     width: `${sliderPos}%`,
                 }}
             ></div>
@@ -97,10 +122,7 @@ function Diffcheck() {
                 </svg>
             </div>
         </div>
-            );
-
-
-   
+    );
 }
 
 export default Diffcheck;
