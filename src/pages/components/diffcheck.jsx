@@ -12,19 +12,16 @@ function Diffcheck({ before, after,scaling,width,height,className }) {
         width: 0,
         height: 0,
     });
+    const handleResize = () => {
+        if (containerRef.current) {
+            setContainerSize({
+                width: containerRef.current.offsetWidth,
+                height: containerRef.current.offsetHeight,
+            });
+        }
+    };
 
     useEffect(() => {
-        const handleResize = () => {
-            if (containerRef.current) {
-                setContainerSize({
-                    width: containerRef.current.offsetWidth,
-                    height: containerRef.current.offsetHeight,
-                });
-            }
-        };
-
-        // Set initial size
-
 
         // Add event listener for window resize
         window.addEventListener('resize', handleResize);
@@ -50,7 +47,9 @@ function Diffcheck({ before, after,scaling,width,height,className }) {
                 width: img.height,
                 height: img.height,
             });
+            handleResize();
         };
+        
     }, [beforeImg]);
 
     useEffect(() => {
@@ -69,7 +68,8 @@ function Diffcheck({ before, after,scaling,width,height,className }) {
                 className="absolute top-0 left-0 w-full h-full"
                 style={{
                     backgroundImage: `url('${beforeImg}')`,
-                    backgroundSize: `${scaling ? scaling : img_width+'px '+img_height+'px'}`, //${scaling=='auto' ? width : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px`,
+                    // backgroundSize: `${img_width}px ${img_height}px`,
+                    backgroundSize: `${scaling=='auto' ? containerSize.width+'px' : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px`,
                 }}
             ></div>
 
@@ -80,7 +80,8 @@ function Diffcheck({ before, after,scaling,width,height,className }) {
                 className="absolute top-0 left-0 h-full"
                 style={{
                     backgroundImage: `url('${afterImg}')`,
-                    backgroundSize: `${scaling ? scaling : img_width+'px '+img_height+'px'}`, //${scaling=='auto' ? width : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px
+                    // backgroundSize: `${img_width}px ${img_height}px`,
+                    backgroundSize: `${scaling=='auto' ? containerSize.width+'px' : img_width} ${scaling=='auto' ? (containerSize.width/img_width) * img_height : img_height}px`,
                     width: `${sliderPos}%`,
                 }}
             ></div>

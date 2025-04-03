@@ -21,13 +21,14 @@ function Demo() {
     return (
 
         <div className="page">
-            <div className="flex flex-col justify-center  m-0">
+            <div className="flex flex-col justify-center  h-screen m-0">
                     {/* <Diffcheck className="border-2 border-gray-200" width={'auto'} height={'auto'} before={beforeImg} after={afterImg} /> */}
-                    <Diffcheck className="border-2 border-gray-200" scaling={'auto'} width={'100%'} height={'300px'} before={beforeImg} after={afterImg} />
+                    <Diffcheck className="w-full border-2 border-gray-200" scaling={'auto'} height={'auto'} before={beforeImg} after={afterImg} />
                     <div className='flex-grow'>
+                      <i className='text-sm'>
+Figure 1. Illustrate our results. Left: Rain-Streak Removal(Derain) Task, Middle:Raindrop Removal Task and Right: Low Light Image enhancement Task.
+                    </i>
 
-
-Figure 1. Left: Output Image, Right: Input Image
                     </div>
             </div>
             </div>
