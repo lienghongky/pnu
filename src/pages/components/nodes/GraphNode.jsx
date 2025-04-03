@@ -34,7 +34,7 @@ export default memo(({ data, isConnectable }) => {
 
           );
         })}
-        <div className="fixed -bottom-6 left-12 text-center">{data.label}</div>
+        <div className="fixed -bottom-6 left-8 text-center">{data.label}</div>
       </div>
       <Handle
         type="source"

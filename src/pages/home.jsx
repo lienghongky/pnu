@@ -43,6 +43,9 @@ function App() {
   
       <div className="h-60">
         <ReactFlow
+          // zoomOnScroll={false}
+          minZoom={0.6}
+          maxZoom={0.8}
           panOnDrag = {false}
           nodes={nodes}
           onNodesChange={onNodesChange}
