@@ -5,8 +5,8 @@ import Diffcheck from './components/diffcheck';
 function Demo() {
 
     const location = useLocation();
-    const [beforeImg, setBeforeImg] = useState('/assets/rain_input.png');
-    const [afterImg, setAfterImg] = useState('/assets/raint_output.png');
+    const [beforeImg, setBeforeImg] = useState('/assets/input.png');
+    const [afterImg, setAfterImg] = useState('/assets/ours.png');
 
 
     useEffect(() => {
