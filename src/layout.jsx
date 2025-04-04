@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function Layout() {
   const location = useLocation();
-
+  const [title, setTitle] = useState("GVMambaIR: Graph Vison Mamba for Image Restoration with State-Space Model");
   const [menus, setMenus] = useState([
     {
       label: "Project",
@@ -62,8 +62,7 @@ function Layout() {
           </div>
           <div className="divider"></div>
           <h1 className="pt-20">
-            GVMamba: Graph Vision Mamba for Image Restoration with State-Space
-            Model
+            {title}
           </h1>
           <div className="sm:flex justify-center space-x-10 py-4 ">
             <p className="py-2 text-sm">
