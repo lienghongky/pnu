@@ -41,7 +41,8 @@ function App() {
   return (<div className="min-h-screen page">
 
   
-      <div className="h-60">
+    
+<div className="h-60">
         <ReactFlow
           // zoomOnScroll={false}
           minZoom={0.6}
@@ -60,7 +61,6 @@ function App() {
           <Controls />
         </ReactFlow>
       </div>
-
    
     <article className="prose lg:prose-xl">
       <h4 className='font-bold pt-10 pb-2'>Abstract</h4>
@@ -75,7 +75,15 @@ function App() {
           To address this challenge, we propose <strong>Graph Vision Mamba (GVMamba)</strong>, a novel framework that integrates a Graph Neural Network (GNN) into the Mamba architecture. By leveraging GNNs, our model enhances spatial information flow and enable image feature interaction while preserving computational efficiency. Experimental results demonstrate that GVMamba outperforms existing state-space and transformer-based models in image restoration tasks such as Image Rain drop Removal and  Rain-Streak Removal(Derain), offering a scalable and effective solution for real-world applications.
           </p>
     </article>
+    <div className="flex flex-col items-center justify-center py-10">
+      <img 
+        className='max-w-3xl'
+        src="/assets/intro.png" alt="" srcset="" />
+        <p>Figure 1: Visual results of our method on Raindrop Removal Task, Rain-Streak Removal Task,
+Low Light Image Enhancement Task and Denoising Task.</p>
+    </div>
 
+ 
 
     </div>);
 }
