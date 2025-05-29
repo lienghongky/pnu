@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function Layout() {
   const location = useLocation();
-  const [title, setTitle] = useState("GVMambaIR: Graph Vison Mamba for Image Restoration with State-Space Model");
+  const [title, setTitle] = useState("GVMambaIR: Graph Vision Mamba for Image Restoration with State-Space Model");
   const [menus, setMenus] = useState([
     {
       label: "Project",
