@@ -74,7 +74,11 @@ function App() {
           However, Mamba’s inherent causal modeling nature restricts its ability to model spatial relationships effectively on Image data. While previous research has attempted to alleviate the shortcoming through multi-directional scanning but increase computational complexity as a trade-off.
           To address this challenge, we propose <strong>Graph Vision Mamba (GVMamba)</strong>, a novel framework that integrates a Graph Neural Network (GNN) into the Mamba architecture. By leveraging GNNs, our model enhances spatial information flow and enable image feature interaction while preserving computational efficiency. Experimental results demonstrate that GVMamba outperforms existing state-space and transformer-based models in image restoration tasks such as Image Rain drop Removal and  Rain-Streak Removal(Derain), offering a scalable and effective solution for real-world applications.
           </p>
+           
     </article>
+    <div className="p-4">
+      <a className="p-2 bg-blue-300 rounded-lg border m-4" href="https://pusanackr-my.sharepoint.com/:p:/g/personal/lienghongky_pusan_ac_kr/IQBWk92iL-UFSaygDoYTrs-MAUb5q7pEecQXbRJanIpziXo?e=CmAfo2" target="_blank" rel="noopener noreferrer">View PPT</a>
+    </div>
     <div className="flex flex-col items-center justify-center py-10">
       <img 
         className='max-w-3xl'

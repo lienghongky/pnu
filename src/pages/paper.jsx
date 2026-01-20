@@ -7,7 +7,7 @@ const Paper = () => {
     const [contents, setContents] = useState([
         {
             label: "Abstract",
-            link: "abstract"
+            link: "abstract",
         },
         {
             label: "Introduction",
@@ -120,7 +120,7 @@ const Paper = () => {
                 
                 
                 )
-                }
+            }
             </div>
 
 
